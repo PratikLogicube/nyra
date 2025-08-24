@@ -1,0 +1,17 @@
+# Ignore environment files
+*.env*
+.mysql.env
+
+# Ignore Vercel
+.vercel
+.next
+# TypeScript build files
+*.tsbuildinfo
+next-dev.d.ts
+
+# Build outputs
+build/
+dist/
+
+# Ignore all node_modules in any subdirectory
+node_modules/
