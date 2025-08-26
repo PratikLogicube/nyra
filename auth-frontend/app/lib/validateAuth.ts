@@ -1,17 +1,14 @@
 import axios from "axios";
 import { cookies } from "next/headers";
+import api from "../utils/axiosInstance";
 
 export const validateAuth = async () => {
   console.log("Validating user authentication...");
 
   const cookieStore = await cookies();
   try {
-    const url = `${
-      process.env.NODE_ENV === "development"
-        ? process.env.LOCAL_BACKEND_URL
-        : process.env.PROD_BACKEND_URL
-    }`;
-    const res = await axios.put(
+    const url = process.env.NEXT_PUBLIC_API_URL;
+    const res = await api.put(
       `${url}/auth/validate/tokens`,
       {},
       {

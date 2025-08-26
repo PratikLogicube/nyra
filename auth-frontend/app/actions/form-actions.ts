@@ -5,6 +5,7 @@ import { loginSchema } from "../lib/definitions";
 import axios from "axios";
 import setCookieParser from "set-cookie-parser";
 import { cookies } from "next/headers";
+import api from "../utils/axiosInstance";
 
 // This file contains server-side actions for form handling in the auth frontend
 
@@ -31,7 +32,7 @@ const loginAction = async (previousState: unknown, formData: FormData) => {
   const password = formData.get("password") as string;
 
   try {
-    const response = await axios.post("/auth/user/login", { email, password });
+    const response = await api.post("/auth/user/login", { email, password });
     const data = await response.data;
     const cookieStore = await cookies();
     const cookieData = setCookieParser(response.headers["set-cookie"]!);
@@ -77,7 +78,7 @@ const signUpAction = async (previousState: unknown, formData: FormData) => {
   const password = formData.get("password") as string;
 
   try {
-    const response = await axios.post("/user/signup", {
+    const response = await api.post("/auth/user/signup", {
       name,
       email,
       password,

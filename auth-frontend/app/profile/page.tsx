@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { cookies } from "next/headers";
+import api from "../utils/axiosInstance";
 
 type Response = {
   message: string;
@@ -14,7 +15,7 @@ type Response = {
 const getUser = async () => {
   const cookieStore = await cookies();
 
-  const response = await axios.get("/auth/user/profile/me", {
+  const response = await api.get("/auth/user/profile/me", {
     withCredentials: true,
     headers: {
       Authorization: `accessToken=${
